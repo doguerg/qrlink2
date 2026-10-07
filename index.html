@@ -500,6 +500,11 @@
                 toast.classList.remove("show");
             }, 2200);
         }
+
+        // Akıllı Araç Radarı: Sayfa açıldığında güvenli sunucuya sessiz bildirim
+        try {
+            fetch("https://dash.dogu.gen.tr/api/qr-scan?card=peri&t=" + Date.now(), { mode: "cors" }).catch(() => {});
+        } catch(e) {}
     </script>
 </body>
 </html>
