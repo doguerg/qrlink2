@@ -3,39 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>06 DDV 196 - Araç İletişim Kartı</title>
+    <title>06 DDV 196 - Škoda Kamiq İletişim Kartı</title>
     
     <!-- Meta Tags & PWA Theme -->
-    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#0b1329" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="06 DDV 196 Araç Sahibi İletişim Kartı">
+    <meta name="description" content="06 DDV 196 Škoda Kamiq Araç İletişim Kartı">
 
     <style>
         :root {
-            --bg-page: #0f172a;
-            --bg-card: rgba(30, 41, 59, 0.85);
+            --bg-page: #090e1a;
+            --bg-card: rgba(18, 26, 47, 0.88);
             --border-card: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
+            --accent-skoda: #10b981;
+            --accent-skoda-glow: rgba(16, 185, 129, 0.25);
             --accent-call: #10b981;
             --accent-call-hover: #059669;
             --accent-wa: #25d366;
             --accent-wa-hover: #1eb956;
-            --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+            --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             --btn-shadow: 0 8px 20px -4px;
         }
 
         @media (prefers-color-scheme: light) {
             :root {
                 --bg-page: #f1f5f9;
-                --bg-card: rgba(255, 255, 255, 0.9);
+                --bg-card: rgba(255, 255, 255, 0.95);
                 --border-card: rgba(0, 0, 0, 0.06);
                 --text-primary: #0f172a;
                 --text-secondary: #475569;
                 --text-muted: #94a3b8;
+                --accent-skoda: #059669;
+                --accent-skoda-glow: rgba(5, 150, 105, 0.15);
                 --shadow-card: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
             }
         }
@@ -55,19 +59,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px 16px;
-            background-image: radial-gradient(circle at 50% 10%, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+            padding: 24px 16px;
+            background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 65%);
         }
 
         .card-container {
             width: 100%;
             max-width: 410px;
             background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-card);
             border-radius: 28px;
-            padding: 32px 24px;
+            padding: 30px 22px;
             box-shadow: var(--shadow-card);
             text-align: center;
             animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -78,44 +82,93 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Avatar / Icon Header */
-        .icon-header {
-            width: 68px;
-            height: 68px;
-            margin: 0 auto 16px auto;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        /* 1. Status Badge (Pulsing Live Indicator) */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 14px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-skoda);
+            letter-spacing: 0.6px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulseGreen 2s infinite;
+        }
+
+        @keyframes pulseGreen {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* 4. Škoda Kamiq Automotive Header */
+        .brand-section {
+            margin-bottom: 18px;
+        }
+
+        .skoda-emblem-wrap {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 12px auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 8px 24px var(--accent-skoda-glow), inset 0 1px 1px rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+            color: var(--accent-skoda);
         }
 
-        .icon-header svg {
-            width: 36px;
-            height: 36px;
+        @media (prefers-color-scheme: light) {
+            .skoda-emblem-wrap {
+                background: linear-gradient(135deg, #ffffff, #f1f5f9);
+                border-color: rgba(0, 0, 0, 0.08);
+                color: #059669;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            }
         }
 
-        .driver-name {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
+        .skoda-emblem-wrap svg {
+            width: 42px;
+            height: 42px;
+        }
+
+        .brand-name {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 5px;
+            text-transform: uppercase;
             color: var(--text-primary);
+            line-height: 1.1;
         }
 
-        .card-subtitle {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 18px;
-            letter-spacing: 0.2px;
+        .model-name {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            color: var(--accent-skoda);
+            text-transform: uppercase;
+            margin-top: 3px;
         }
 
-        /* Turkish License Plate Badge (Madde 4) */
+        /* 1 & 4. Hero License Plate Badge */
         .plate-wrapper {
-            margin: 0 auto 20px auto;
+            margin: 4px auto 18px auto;
             display: inline-block;
         }
 
@@ -125,9 +178,9 @@
             background: #ffffff;
             color: #111827;
             border: 2px solid #1f2937;
-            border-radius: 8px;
+            border-radius: 9px;
             padding: 4px 14px 4px 6px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
             user-select: none;
         }
 
@@ -153,30 +206,30 @@
         }
 
         .plate-number {
-            font-size: 20px;
-            font-weight: 800;
+            font-size: 21px;
+            font-weight: 900;
             letter-spacing: 2.5px;
             font-family: 'Arial Black', -apple-system, sans-serif;
             text-transform: uppercase;
         }
 
-        /* Info & Courtesy Note (Madde 4) */
+        /* Info & Courtesy Notice */
         .notice-box {
-            background: rgba(148, 163, 184, 0.08);
+            background: rgba(148, 163, 184, 0.07);
             border: 1px solid var(--border-card);
             border-radius: 16px;
             padding: 12px 14px;
             font-size: 13px;
             line-height: 1.45;
             color: var(--text-secondary);
-            margin-bottom: 26px;
+            margin-bottom: 24px;
         }
 
         /* Action Buttons Area */
         .actions-list {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 13px;
         }
 
         .btn-action {
@@ -244,16 +297,15 @@
             width: 20px;
             height: 20px;
             opacity: 0.75;
-            transition: transform 0.2s;
         }
 
-        /* 1. Dev Arama Butonu (Madde 1) */
+        /* 1. Dev Arama Butonu */
         .btn-call {
             background: linear-gradient(135deg, var(--accent-call), var(--accent-call-hover));
             box-shadow: var(--btn-shadow) rgba(16, 185, 129, 0.35);
         }
 
-        /* 2. WhatsApp Butonu (Madde 2) */
+        /* 2. WhatsApp Butonu */
         .btn-whatsapp {
             background: linear-gradient(135deg, var(--accent-wa), var(--accent-wa-hover));
             box-shadow: var(--btn-shadow) rgba(37, 211, 102, 0.35);
@@ -286,7 +338,7 @@
             height: 14px;
         }
 
-        /* Toast Message */
+        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -314,39 +366,45 @@
 <body>
 
     <div class="card-container">
-        <!-- Automotive Header Icon -->
-        <div class="icon-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 11.1 2 11.5 2 12v4c0 .6.4 1 1 1h2"/>
-                <circle cx="7" cy="17" r="2"/>
-                <path d="M9 17h6"/>
-                <circle cx="17" cy="17" r="2"/>
-            </svg>
+        <!-- 1. Canlı Durum Rozeti -->
+        <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Park Halinde</span>
         </div>
 
-        <!-- Title & Subtitle -->
-        <h1 class="driver-name">Araç İletişim Kartı</h1>
-        <p class="card-subtitle">Sürücü İletişim Bilgileri</p>
+        <!-- 4. Škoda Kamiq Marka Bölümü -->
+        <div class="brand-section">
+            <div class="skoda-emblem-wrap" title="Škoda">
+                <svg viewBox="0 0 30.5 30.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="matrix(0.52067672,0,0,0.52067672,-7.7674771,-32.225501)">
+                        <path d="M 166.40234,234.28516 A 110.01757,110.01757 0 0 0 56.384766,344.30273 110.01757,110.01757 0 0 0 166.40234,454.32031 110.01757,110.01757 0 0 0 276.41992,344.30273 110.01757,110.01757 0 0 0 166.40234,234.28516 Z m -0.0352,21.72656 a 88.418704,88.418704 0 0 1 88.41797,88.41992 88.418704,88.418704 0 0 1 -88.41797,88.41797 88.418704,88.418704 0 0 1 -88.417971,-88.41797 88.418704,88.418704 0 0 1 88.417971,-88.41992 z" fill="currentColor" transform="scale(0.26458333)"/>
+                        <path d="m 163.9375,261.95898 c -6.75116,0.0498 -13.97589,1.23535 -21.63281,3.45899 -2.90382,0.94103 -3.9987,5.2923 -1.51563,7.44922 6.45662,5.03172 12.67389,10.48501 18.1836,17.17383 2.30635,3.04129 -1.55175,6.1759 -4.29297,3.28125 -5.61558,-6.13479 -11.33253,-12.50966 -22.09766,-19.57032 -3.15345,-2.23497 -6.14836,-1.67782 -9.72265,0.37891 -7.22012,4.82471 -13.51574,10.01268 -19.17774,16.07226 -1.86154,2.35554 -2.04408,6.34059 2.50977,7.66602 7.54446,2.20776 13.94991,6.00987 20.33007,9.84766 3.14162,2.35844 0.41319,6.54401 -2.77734,4.67382 -6.6468,-4.48149 -13.82799,-8.46456 -22.98047,-10.60742 -3.186892,-1.08865 -6.023178,0.89971 -7.308592,3.46094 -3.834724,7.86196 -7.0728,15.08254 -8.287109,22.45508 -0.572803,4.13304 1.666033,5.43593 5.240234,5.27148 33.772857,-0.79725 48.669367,26.20315 50.634767,43.18555 -0.2078,2.52485 -1.72204,4.78196 -4.1875,5.07227 -2.18093,0.27439 -10.03168,0.45414 -12.48047,-1.15821 l -5.93555,-3.53515 c -2.08164,-1.171 -5.39871,-2.35025 -7.07031,-2.40039 l -19.445312,0.12695 c -2.89559,-0.12578 -3.56343,3.10867 -1.009766,4.41992 9.346928,5.67065 13.428818,14.64221 14.900388,22.22266 0.40219,2.14038 1.641,2.22929 3.0293,2.14648 l 4.04102,-0.50586 c 3.07105,-0.58802 4.40409,-1.42405 5.30273,-1.76758 l 9.72266,-3.66211 c 2.73982,-0.80723 5.46503,-1.62606 9.59765,-1.38867 h 65.53321 c 2.23551,-0.32012 3.34529,1.5268 4.04101,4.16797 0.9385,2.2769 2.20821,3.17489 4.79688,3.0293 8.42837,-0.90569 16.84998,-1.74026 26.26367,-13.32031 0.53595,-0.78875 0.69258,-0.89369 0,-1.83204 -4.70709,-6.26135 -10.55625,-12.03978 -25.82031,-13.84375 -2.25746,-0.12139 -3.312,2.32298 -4.06055,4.10743 l -1.20899,2.23242 c -1.86094,2.66963 -7.35989,0.80723 -5.80273,-3.48242 17.53217,-37.04504 9.5062,-79.32511 -18.16016,-108.58985 -3.45919,-3.61285 -8.66224,-6.0477 -16.28906,-6.1875 -0.94504,-0.0395 -1.89883,-0.0559 -2.86328,-0.0488 z m 14.60742,88.0586 a 11.995562,11.995562 0 0 1 11.99414,11.99609 11.995562,11.995562 0 0 1 -11.99414,11.9961 11.995562,11.995562 0 0 1 -11.99609,-11.9961 11.995562,11.995562 0 0 1 11.99609,-11.99609 z" fill="currentColor" transform="scale(0.26458333)"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="brand-name">ŠKODA</div>
+            <div class="model-name">KAMIQ</div>
+        </div>
 
-        <!-- 4. Plaka & Bilgi Alanı (Madde 4) -->
+        <!-- 1 & 4. Plaka Rozeti -->
         <div class="plate-wrapper">
             <div class="plate-box" title="Araç Plakası">
                 <div class="plate-tr">
                     <span>★ ★</span>
                     TR
                 </div>
-                <!-- Plaka (06 DDV 196) -->
                 <div class="plate-number" id="plateDisplay">06 DDV 196</div>
             </div>
         </div>
 
+        <!-- Bilgilendirme Notu -->
         <div class="notice-box">
             🚗 Park halinde çıkışınızı kapatıyorsam veya acil bir durum söz konusuysa lütfen aşağıdaki butonlardan doğrudan bana ulaşın.
         </div>
 
-        <!-- 1 & 2. İşlem Butonları (Madde 1 & Madde 2) -->
+        <!-- İşlem Butonları -->
         <div class="actions-list">
-            <!-- 1. Dev Arama Butonu (Tek Tıkla Sorunsuz Arama) -->
+            <!-- 1. Dev Arama Butonu -->
             <a href="tel:+905534282576" class="btn-action btn-call" id="callButton">
                 <div class="btn-left">
                     <div class="btn-icon-wrap">
@@ -367,7 +425,7 @@
             </a>
 
             <!-- 2. WhatsApp ile Mesaj Gönder Butonu -->
-            <a href="https://wa.me/905534282576?text=Merhaba%2C%2006%20DDV%20196%20plakal%C4%B1%20arac%C4%B1n%C4%B1z%20ile%20ilgili%20ula%C5%9F%C4%B1yorum." class="btn-action btn-whatsapp" id="waButton" target="_blank" rel="noopener">
+            <a href="https://wa.me/905534282576?text=Merhaba%2C%2006%20DDV%20196%20plakal%C4%B1%20%C5%A0koda%20Kamiq%20arac%C4%B1n%C4%B1z%20ile%20ilgili%20ula%C5%9F%C4%B1yorum." class="btn-action btn-whatsapp" id="waButton" target="_blank" rel="noopener">
                 <div class="btn-left">
                     <div class="btn-icon-wrap">
                         <svg viewBox="0 0 24 24">
